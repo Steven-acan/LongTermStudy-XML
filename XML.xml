@@ -1,0 +1,44 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    File: example.xml
+    Description: Formal template for a standard XML document
+    Author: Steven Liu 
+    Author Email: cliu141@its.jnj.com
+    Created: 2026-01-19
+-->
+
+<RootElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="schema.xsd">
+
+    <!-- ===== Header Section ===== -->
+    <Header>
+        <DocumentID>123456</DocumentID>
+        <CreationDate>2026-01-19</CreationDate>
+        <SourceSystem>SAP</SourceSystem>
+    </Header>
+
+    <!-- ===== Body Section ===== -->
+    <Body>
+        <Item>
+            <ItemID>ITEM001</ItemID>
+            <Description>Sample item description</Description>
+            <Quantity unit="EA">10</Quantity>
+            <Price currency="USD">25.00</Price>
+        </Item>
+
+        <Item>
+            <ItemID>ITEM002</ItemID>
+            <Description>Another item description</Description>
+            <Quantity unit="EA">5</Quantity>
+            <Price currency="USD">40.00</Price>
+        </Item>
+    </Body>
+
+    <!-- ===== Footer Section ===== -->
+    <Footer>
+        <RecordCount>2</RecordCount>
+        <Checksum>ABC123XYZ</Checksum>
+    </Footer>
+
+</RootElement>

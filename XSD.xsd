@@ -1,0 +1,88 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    File: example.xsd
+    Description: Formal XML Schema template for validating XML structure
+    Author: [Your Name]
+    Created: YYYY-MM-DD
+-->
+
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <!-- ============================== -->
+    <!-- Root Element Definition        -->
+    <!-- ============================== -->
+    <xs:element name="RootElement">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Header" type="HeaderType"/>
+                <xs:element name="Body" type="BodyType"/>
+                <xs:element name="Footer" type="FooterType" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ============================== -->
+    <!-- Header Type Definition         -->
+    <!-- ============================== -->
+    <xs:complexType name="HeaderType">
+        <xs:sequence>
+            <xs:element name="DocumentID" type="xs:string"/>
+            <xs:element name="CreationDate" type="xs:date"/>
+            <xs:element name="SourceSystem" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================== -->
+    <!-- Body Type Definition           -->
+    <!-- ============================== -->
+    <xs:complexType name="BodyType">
+        <xs:sequence>
+            <xs:element name="Item" type="ItemType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================== -->
+    <!-- Item Type Definition           -->
+    <!-- ============================== -->
+    <xs:complexType name="ItemType">
+        <xs:sequence>
+            <xs:element name="ItemID" type="xs:string"/>
+            <xs:element name="Description" type="xs:string"/>
+            <xs:element name="Quantity" type="QuantityType"/>
+            <xs:element name="Price" type="PriceType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Quantity with attribute -->
+    <xs:complexType name="QuantityType">
+        <xs:simpleContent>
+            <xs:extension base="xs:decimal">
+                <xs:attribute name="unit" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Price with currency attribute -->
+    <xs:complexType name="PriceType">
+        <xs:simpleContent>
+            <xs:extension base="xs:decimal">
+                <xs:attribute name="currency" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- ============================== -->
+    <!-- Footer Type Definition         -->
+    <!-- ============================== -->
+    <xs:complexType name="FooterType">
+        <xs:sequence>
+            <xs:element name="RecordCount" type="xs:integer"/>
+            <xs:element name="Checksum" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
